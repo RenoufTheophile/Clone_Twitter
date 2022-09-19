@@ -1,6 +1,6 @@
 import { WarningIcon } from  "@chakra-ui/icons"
 import { Box, Button, Flex, Stack } from "@chakra-ui/react";
-import { signIn } from "next-auth/client";
+import { signIn } from "next-auth/react";
 import Link from "next/link";
 import * as React from "react";
 import { FC } from "react";

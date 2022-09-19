@@ -3,7 +3,7 @@ import Page from "components/pages/tweets";
 import fetchTweets from "lib/queries/fetch-tweets";
 import queryClient from "lib/clients/react-query";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -13,7 +13,7 @@ const TweetsPage: InferGetServerSidePropsType<
     typeof getServerSideProps
     > = ({}) => {
     const { data } = useQuery("tweets", fetchTweets);
-    const [session] = useSession();
+    const {data:session} = useSession();
 
     if (!session) {
         return <AccessDeniedIndicator />;

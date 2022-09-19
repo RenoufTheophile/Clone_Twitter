@@ -9,14 +9,14 @@ import React from "react";
 import { QueryClientProvider } from "react-query";
 import { Hydrate } from "react-query/hydration";
 
-const App = ({ Component, pageProps }: AppProps) => {
+export default function  App({ Component, pageProps: { session, ...pageProps } }) {
     return (
         <QueryClientProvider client={queryClient}>
             <Hydrate state={pageProps.dehydratedState}>
                 <Head>
-                    <link rel="shortcut icon" href="/public/favicon.ico" />
+                    <link rel="shortcut icon" href="/public/favicon.ico"/>
                 </Head>
-                <SessionProvider session={pageProps.session}>
+                <SessionProvider session={session}>
                     <ChakraProvider>
                         <Layout>
                             <Component {...pageProps} />
@@ -26,6 +26,6 @@ const App = ({ Component, pageProps }: AppProps) => {
             </Hydrate>
         </QueryClientProvider>
     );
-};
+}
 
-export default App;
+

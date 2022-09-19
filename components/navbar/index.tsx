@@ -5,7 +5,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import { Box, Stack, Link as _Link, Button } from "@chakra-ui/react";
 
 const Navbar: NextComponentType = () => {
-    const {session} = useSession();
+    const getSession = useSession();
 
     const linksForAllUsers = [
         {
@@ -29,7 +29,7 @@ const Navbar: NextComponentType = () => {
     ];
 
     const signInButtonNode = () => {
-        if (session) {
+        if (getSession) {
             return false;
         }
 
@@ -50,7 +50,7 @@ const Navbar: NextComponentType = () => {
     };
 
     const signOutButtonNode = () => {
-        if (!session) {
+        if (!getSession) {
             return false;
         }
 
@@ -92,7 +92,7 @@ const Navbar: NextComponentType = () => {
                                         </Box>
                                     );
                                 })}
-                                {session &&
+                                {getSession &&
                                     linksForAuthenticatedUsers.map((link) => {
                                         return (
                                             <Box key={link.id}>

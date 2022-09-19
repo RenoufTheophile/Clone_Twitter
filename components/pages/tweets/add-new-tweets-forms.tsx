@@ -10,13 +10,13 @@ import AccessDeniedIndicator from "components/access-denied-indicator";
 import saveTweet from "lib/mutations/save-tweets";
 import fetchTweets from "lib/queries/fetch-tweets";
 import queryClient from "lib/clients/react-query";
-import { useSession } from "next-auth/client";
+import { useSession } from "next-auth/react";
 import React, { ChangeEvent, useState } from "react";
 import { useMutation, useQuery } from "react-query";
 
 const AddNewTweetForm = () => {
     const [body, setBody] = useState("");
-    const [session] = useSession();
+    const {data:session} = useSession();
     const { refetch } = useQuery("tweets", fetchTweets);
     const mutation = useMutation(saveTweet, {
         onSuccess: async () => {

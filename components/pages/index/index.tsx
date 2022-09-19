@@ -14,7 +14,7 @@ import Link from "next/link";
 import React from "react";
 
 const IndexPageComponent = () => {
-    const {session} = useSession(), signInButtonNode = () => {
+    const {data: session} = useSession(), signInButtonNode = () => {
         if (session) {
             return false;
         }
