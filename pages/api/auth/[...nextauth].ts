@@ -7,9 +7,15 @@ import { PrismaClient } from "@prisma/client";
 import * as Prisma from "@prisma/client";
 import Providers from "next-auth/providers";
 import {Provider} from "next-auth/providers";
-import TwitterProvider from "next-auth/providers/twitter";
-import FacebookProvider from 'next-auth/providers/facebook'
-import GoogleProvider from 'next-auth/providers/google'
+import GoogleProvider from "next-auth/providers/google"
+import FacebookProvider from "next-auth/providers/facebook"
+import GithubProvider from "next-auth/providers/github"
+import TwitterProvider from "next-auth/providers/twitter"
+import Auth0Provider from "next-auth/providers/auth0"
+import {NextApiHandler} from "next";
+
+
+const authHandler: NextApiHandler = (req, res) => NextAuth(req, res, options);
 
 const prisma = new PrismaClient()
 
@@ -18,6 +24,10 @@ const options = {
         TwitterProvider({
             clientId: process.env.TWITTER_KEY,
             clientSecret: process.env.TWITTER_SECRET,
+        }),
+        GithubProvider({
+            clientId: process.env.GITHUB_ID,
+            clientSecret: process.env.GITHUB_SECRET,
         }),
         FacebookProvider({
             clientId: process.env.FACEBOOK_ID,
@@ -29,6 +39,7 @@ const options = {
         }),
     ],
     adapter: PrismaAdapter(prisma),
+    secret: process.env.SECRET,
 };
 
-export default NextAuth(options)
+export default authHandler;
