@@ -36,7 +36,7 @@ const AddNewTweetForm = () => {
         const data = {
             body,
             author: {
-                connect: { email: session.user.email },
+                connect: { user: session.user },
             },
         };
 

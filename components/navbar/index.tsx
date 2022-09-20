@@ -29,7 +29,7 @@ const Navbar: NextComponentType = () => {
     ];
 
     const signInButtonNode = () => {
-        if (getSession) {
+        if (!getSession) {
             return false;
         }
 
@@ -50,7 +50,7 @@ const Navbar: NextComponentType = () => {
     };
 
     const signOutButtonNode = () => {
-        if (!getSession) {
+        if (getSession) {
             return false;
         }
 
