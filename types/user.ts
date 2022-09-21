@@ -2,7 +2,7 @@
 import ITweet from "./tweet";
 
 export default interface IUser {
-    id: number;
+    id: string;
     name: string;
     image: string;
     email: string;

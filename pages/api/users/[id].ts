@@ -10,12 +10,12 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     if (req.method === "GET") {
-        const userId = parseInt(req.query.id as string);
+        const userId = req.query.id as string;
 
         try {
             const tweets = await prisma.user.findUnique({
                 include: {
-                    tweets: true,
+                    Tweet: true,
                 },
                 where: {
                     id: userId,
