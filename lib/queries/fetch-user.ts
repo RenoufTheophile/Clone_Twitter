@@ -1,6 +1,6 @@
 const fetchUser = async (userId: string) => {
     const res = await fetch(
-        `http://localhost:3000/api/users/${userId}`
+        `https://theophile-renouf-blogr-clone-twitter.vercel.app/api/users/${userId}`
     );
     const data = await res.json();
 
