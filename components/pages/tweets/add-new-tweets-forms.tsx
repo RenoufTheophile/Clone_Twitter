@@ -7,7 +7,7 @@ import {
     Textarea,
 } from "@chakra-ui/react";
 import AccessDeniedIndicator from "components/access-denied-indicator";
-import saveTweet from "lib/mutations/save-tweets";
+import saveTweet from "lib/mutations/save-tweet";
 import fetchTweets from "lib/queries/fetch-tweets";
 import queryClient from "lib/clients/react-query";
 import { useSession } from "next-auth/react";
@@ -16,7 +16,7 @@ import { useMutation, useQuery } from "react-query";
 
 const AddNewTweetForm = () => {
     const [body, setBody] = useState("");
-    const {data:session} = useSession();
+    const {data : session}= useSession();
     const { refetch } = useQuery("tweets", fetchTweets);
     const mutation = useMutation(saveTweet, {
         onSuccess: async () => {
@@ -36,7 +36,7 @@ const AddNewTweetForm = () => {
         const data = {
             body,
             author: {
-                connect: { user: session.user },
+                connect: { email: session.user.email },
             },
         };
 

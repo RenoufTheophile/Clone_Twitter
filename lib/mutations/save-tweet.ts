@@ -1,9 +1,11 @@
 const saveTweet = async (body: any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tweets`, {
+    const res = await fetch(`http://localhost:3000/api/tweets`, {
         method: "POST",
         body: JSON.stringify(body),
     });
+
     const data = await res.json();
+   // console.log(data)
 
     return data;
 };

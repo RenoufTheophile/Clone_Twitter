@@ -3,8 +3,9 @@ export default interface ISession {
         name: string;
         email: string;
         image: string;
+        userId: string;
     };
-    id: number;
+    id: string;
     expires: string;
     token: string;
 }

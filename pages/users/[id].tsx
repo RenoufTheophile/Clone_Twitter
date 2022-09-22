@@ -3,7 +3,7 @@ import Page from "components/pages/users/[id]";
 import fetchUser from "lib/queries/fetch-user";
 import queryClient from "lib/clients/react-query";
 import { GetServerSideProps, InferGetServerSidePropsType } from "next";
-import { getSession, useSession } from "next-auth/client";
+import { getSession, useSession } from "next-auth/react";
 import Head from "next/head";
 import * as React from "react";
 import { useQuery } from "react-query";
@@ -12,8 +12,9 @@ import { dehydrate } from "react-query/hydration";
 const MyAccountPage: InferGetServerSidePropsType<typeof getServerSideProps> = ({
                                                                                    id,
                                                                                }) => {
-    const { data } = useQuery("user", () => fetchUser(parseInt(id as string)));
-    const [session] = useSession();
+    const { data } = useQuery("user", () => fetchUser(id as string));
+    const session = useSession();
+    //console.log(session.data.user.name)
 
     if (!session) {
         return <AccessDeniedIndicator />;
@@ -22,7 +23,7 @@ const MyAccountPage: InferGetServerSidePropsType<typeof getServerSideProps> = ({
     return (
         <>
             <Head>
-                <title>{session.user.name}'s profile</title>
+                <title>s profile</title>
             </Head>
             <Page user={data} />
         </>
@@ -36,7 +37,7 @@ export const getServerSideProps: GetServerSideProps = async ({
     const session = await getSession({ req });
 
     await queryClient.prefetchQuery("user", () =>
-        fetchUser(parseInt(query.id as string))
+        fetchUser(query.id as string)
     );
 
     return {

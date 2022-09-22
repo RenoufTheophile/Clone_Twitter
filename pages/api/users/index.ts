@@ -3,7 +3,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { getSession } from "next-auth/react";
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
-    const {session} = await getSession({ req });
+    const session = await getSession({ req })
 
     if (!session) {
         return res.status(401).json({ reason: "Unauthorized" });
@@ -12,13 +12,13 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     if (req.method === "GET") {
         try {
             const users = await prisma.user.findMany({
-                orderBy: [
+               orderBy: [
                     {
-                        createdAt: "desc",
+                        id: "desc",
                     },
                 ],
             });
-
+            console.log (users)
             return res.status(200).json(users);
         } catch (error) {
             return res.status(422).json(error);

@@ -13,17 +13,14 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 
     if (req.method === "POST") {
         try {
-           /* const postId = req.query.id;
-            const post = await prisma.post.update({
-                where: {id : postId},
-                data: {published:true},
-            })*/
             const { body } = req;
-            const tweet = await prisma.tweet.create({ data: JSON.parse(body) });
 
+            const tweet = await prisma.tweet.create({ data: JSON.parse(body) });
+            console.log(tweet)
             return res.status(200).json(tweet);
         } catch (error) {
-            return res.status(422).json(error);
+
+           return res.status(422).json(error);
         }
     } else if (req.method === "GET") {
         try {
@@ -37,6 +34,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
                     },
                 ],
             });
+            //console.log(tweets)
 
             return res.status(200).json(tweets);
         } catch (error) {

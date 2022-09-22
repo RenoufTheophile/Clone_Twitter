@@ -15,7 +15,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         try {
             const tweets = await prisma.user.findUnique({
                 include: {
-                    Tweet: true,
+                    tweets: true,
                 },
                 where: {
                     id: userId,

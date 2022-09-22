@@ -26,13 +26,14 @@ const UsersPageComponent: FC<IProps> = ({ user }) => {
         <Stack spacing={8}>
             {authorNode()}
             <Grid templateColumns={["1fr", "1fr", "repeat(2, 1fr)"]} gap={8}>
-                {user?.tweets.map((tweet: ITweet) => {
+                {Array.isArray(user)
+                  ?  user?.tweets.map((tweet: ITweet) => {
                     return (
                         <Box key={tweet.id}>
                             <Tweet tweet={tweet} />
                         </Box>
                     );
-                })}
+                }):null}
             </Grid>
         </Stack>
     );

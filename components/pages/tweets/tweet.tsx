@@ -1,7 +1,9 @@
-import { Avatar, Box, Stack, Text } from "@chakra-ui/react";
+import {Avatar, Box, Button, FormControl, FormLabel, Stack, Text, Textarea} from "@chakra-ui/react";
 import timeFromNow from "lib/time-from-now";
-import React, { FC } from "react";
+import React, {ChangeEvent, FC, useState} from "react";
 import ITweet from "types/tweet";
+
+
 
 interface IProps {
     tweet: ITweet;
@@ -42,6 +44,7 @@ const Tweet: FC<IProps> = ({ tweet }) => {
             </Stack>
         </Box>
     );
+
 };
 
 export default Tweet;
