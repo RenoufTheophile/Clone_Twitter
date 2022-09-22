@@ -1,5 +1,5 @@
 const saveTweet = async (body: any) => {
-    const res = await fetch(`https://theophile-renouf-blogr-clone-twitter.vercel.app/api/tweets`, {
+    const res = await fetch(`http://www.pesty.net:3000/api/tweets`, {
         method: "POST",
         body: JSON.stringify(body),
     });

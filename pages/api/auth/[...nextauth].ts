@@ -21,21 +21,9 @@ const prisma = new PrismaClient()
 
 const options = {
     providers: [
-        TwitterProvider({
-            clientId: process.env.TWITTER_KEY,
-            clientSecret: process.env.TWITTER_SECRET,
-        }),
         GithubProvider({
             clientId: process.env.GITHUB_ID,
             clientSecret: process.env.GITHUB_SECRET,
-        }),
-        FacebookProvider({
-            clientId: process.env.FACEBOOK_ID,
-            clientSecret: process.env.FACEBOOK_SECRET
-        }),
-        GoogleProvider({
-            clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_SECRET
         }),
     ],
     adapter: PrismaAdapter(prisma),
